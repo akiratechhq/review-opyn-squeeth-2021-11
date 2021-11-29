@@ -1,0 +1,11 @@
+{
+    "project_name": "Project name",
+    "client_name": "Client name",
+    "review_period": "2 weeks",
+    "date_interval": "October 15 to November 15, 2020",
+    "person_days": "5",
+    "template": "./Readme.md.mustache",
+    "date": "November 2021",
+    "commit_hash": "474413cbba52708c953a23a500acc4194735c87b",
+    "source_repository": "git@github.com:opynfinance/squeeth-monorepo.git"
+}

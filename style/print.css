@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+@media screen {
+    #splash {
+        display: none;
+    }
+}
+
+@media print {
+    @page {
+        size: A4;
+    }
+    
+    body {
+        margin: 32px;
+    }
+
+    .markdown-body {
+        font-size: 18pt;
+    }
+
+    .markdown-body a {
+        color: #245e96;
+    }
+
+    .markdown-body pre > code {
+        font-size: 12pt;
+    }
+
+    .pagebreak { page-break-before: always; }
+    
+    h1 {
+        page-break-after: always;
+    }
+    
+    table, figure {
+       page-break-inside: avoid;
+       page-break-before: avoid;
+    }
+
+    #splash {
+        display: block;
+        background-image: url('./splash-background.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 1000px; 
+        height: 1200px;
+        page-break-after:always;
+    }
+    
+    #splash > #project {
+        position: relative;
+        top: 1000px;
+    }
+    
+    .splash-title {
+        font-family: 'Open Sans', monospace;
+        font-size: 28pt;
+        font-weight: bold;
+        color: #0032AF;
+        text-transform: uppercase;
+    }
+    
+    #details .splash-title {
+        font-size: 16pt;
+    }
+    
+    #details .details-value {
+        font-family: 'Poppins', monospace;
+        font-size: 32pt;
+        font-weight: 300;
+        color: #333;
+    }
+    
+    #details .contact {
+        font-family: 'Poppins', monospace;
+        font-weight: 300;    
+        color: #0032af;
+        font-size: 14pt;
+        position: relative;
+        top: -13px;
+    }
+    
+    #splash > #project > #project-value {
+        font-family: 'Poppins', monospace;
+        font-weight: 300;
+        font-size: 44pt;
+        color: #333333;
+    }
+    
+    #splash > #details {
+        position: relative;
+        top: 1050px;
+        width: 100%;
+        height: 250px;
+        margin: auto;
+    }
+    
+    #splash > #details > #left {
+        width: 50%;
+        height: 400px;
+        float: left;
+    }
+    
+    #splash > #details > #right {
+        height: 200px;
+    }
+}
