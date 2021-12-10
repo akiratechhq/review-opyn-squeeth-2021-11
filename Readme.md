@@ -755,36 +755,36 @@ $ npx surya describe packages/hardhat/contracts/{core,external,import,interfaces
 
 $ npm run test
 
-> @squeeth/hardhat@1.1.0 test
-> hardhat test --network hardhat
+> @squeeth/monorepo@1.0.0 test
+> yarn workspace @squeeth/hardhat test
 
-Compiling 100 files with 0.7.6
-Generating typings for: 101 artifacts in dir: typechain for target: ethers-v5
-Successfully generated 136 typings!
-Compilation finished successfully
+yarn workspace v1.22.17
+yarn run v1.22.17
+$ hardhat test --network hardhat
+No need to generate any newer typings.
 
 
   Liquidation Integration Test
     Liquidate normal vault when price is 2x
-      ✓ liquidate vault 0 (216ms)
-      ✓ should revert if trying to leave vault1 a dust vault (208ms)
-      ✓ fully liquidate vault 1, get the full collateral amount from the vault (239ms)
-      ✓ fully liquidate vault 2, get expected payout (209ms)
-      ✓ should revert when trying to liquidate vault 6 (nft vault underwater) but leave dust behind (341ms)
-      ✓ fully liquidate vault 6, redeem nft and liquidate (326ms)
-      ✓ should revert when trying to liquidate a safe vault (115ms)
+      ✓ liquidate vault 0 (176ms)
+      ✓ should revert if trying to leave vault1 a dust vault (162ms)
+      ✓ fully liquidate vault 1, get the full collateral amount from the vault (205ms)
+      ✓ fully liquidate vault 2, get expected payout (179ms)
+      ✓ should revert when trying to liquidate vault 6 (nft vault underwater) but leave dust behind (243ms)
+      ✓ fully liquidate vault 6, redeem nft and liquidate (276ms)
+      ✓ should revert when trying to liquidate a safe vault (96ms)
     Save vault with uni nft when price is 4x
-      ✓ calling liquidation now will save vault 3 and get bounty (890ms)
-      ✓ seller4 can save his own vault (220ms)
+      ✓ calling liquidation now will save vault 3 and get bounty (496ms)
+      ✓ seller4 can save his own vault (201ms)
     Liquidate vault with uni nft when price is 8x
-      ✓ calling liquidation now will save vault5 + liquidate half of the remaining debt (439ms)
+      ✓ calling liquidation now will save vault5 + liquidate half of the remaining debt (415ms)
 
   Oracle Integration Test
     Get TWAP right after setup
       TWAP for squeeth/eth
-        ✓ fetch initial price (40ms)
+        ✓ fetch initial price
         ✓ fetch price twap for last 10 seconds
-        ✓ should revert while requesting twap with price too old (44ms)
+        ✓ should revert while requesting twap with price too old
       TWAP for eth/dai
         ✓ fetch initial price
         ✓ fetch price twap for last 10 seconds
@@ -794,154 +794,154 @@ Compilation finished successfully
       ✓ fetch squeeth twap for last 10 mins
       ✓ fetch eth twap for last 10 mins
     Adding liquidity mess up things
-      ✓ add liquidity (1356ms)
+      ✓ add liquidity (672ms)
       ✓ fetch squeeth twap for last 10 mins
 
   Testing system stability during extreme market conditions
     Scenario: ETH/DAI price spikes 100%
       1 second after eth price spikes (similar to the state created by flashloan)
-        ✓ index price is updated if requesting with period 1 (56ms)
-        ✓ vaults remains safe because of TWAP (68ms)
-        ✓ can still mint with the same amount of collateral (because of TWAP) (91ms)
-        ✓ should revert when trying to mint the same amount with smaller collateral (86ms)
+        ✓ index price is updated if requesting with period 1
+        ✓ vaults remains safe because of TWAP (59ms)
+        ✓ can still mint with the same amount of collateral (because of TWAP) (74ms)
+        ✓ should revert when trying to mint the same amount with smaller collateral (75ms)
       3 minutes after eth price spiked
-        ✓ index price is updated if requesting with period 180 (38ms)
-        ✓ vaults becomes unsafe (66ms)
-        ✓ should revert when trying to mint with same amount of collateral as before (81ms)
+        ✓ index price is updated if requesting with period 180
+        ✓ vaults becomes unsafe (56ms)
+        ✓ should revert when trying to mint with same amount of collateral as before (69ms)
     Scenario: ETH/DAI price crashes 50%
       1 second after eth price crash (Similar to the state created by flashloan)
         ✓ index price is updated if requesting with period 1
-        ✓ vaults is still safe (because price moves down) (83ms)
-        ✓ should revert if trying to mint more squeeth (96ms)
+        ✓ vaults is still safe (because price moves down) (71ms)
+        ✓ should revert if trying to mint more squeeth (72ms)
       1 minutes after eth price crashed
         ✓ index price is updated if requesting with period 60
-        ✓ will be able to mint more squeeth (178ms)
+        ✓ will be able to mint more squeeth (147ms)
 
   ShortHelper Integration Test
     Basic settings
       deployment
-        ✓ should revert if argument address is invalid (70ms)
-        ✓ should deploy ShortHelper (98ms)
+        ✓ should revert if argument address is invalid
+        ✓ should deploy ShortHelper (49ms)
     Create short position
       ✓ should revert if trying to open a vault with non-weth address and squeeth for swap
       ✓ should revert if trying to open a vault with weth address and non-squeeth for swap
-      ✓ should revert is slippage is too high (118ms)
-      ✓ should revert if end price is lower than limit (132ms)
-      ✓ should open new vault and sell squeeth, receive weth in return (147ms)
+      ✓ should revert is slippage is too high (97ms)
+      ✓ should revert if end price is lower than limit (94ms)
+      ✓ should open new vault and sell squeeth, receive weth in return (105ms)
       ✓ should add ShortHelper as an operator
-      ✓ should add collateral to an existing vault and sell squeeth, receive weth in return (137ms)
+      ✓ should add collateral to an existing vault and sell squeeth, receive weth in return (100ms)
       ✓ should revert if a random address tries to mint and sell squeeth on someone elses vault
-      ✓ should revert if collateral amount put down is dust (86ms)
-      ✓ should revert if user does not put enough collateral (351ms)
-      ✓ should open new vault and sell squeeth, receive eth at the end (340ms)
-      ✓ should revert if trying to short more from the current vault (102ms)
+      ✓ should revert if collateral amount put down is dust (69ms)
+      ✓ should revert if user does not put enough collateral (72ms)
+      ✓ should open new vault and sell squeeth, receive eth at the end (106ms)
+      ✓ should revert if trying to short more from the current vault (75ms)
     Checking eth payable reverts
       ✓ should revert if ETH is sent from a contract other than weth or the controller
     Close short position
       ✓ should revert if a random user to withdraw ETH from someone elses vault
       ✓ should revert if trying to partially close a position using squeeth and not weth
       ✓ should revert if trying to partially close a position using weth and non-squeeth
-      ✓ should revert if slippage is too high (41ms)
-      ✓ should revert if end price is too high (66ms)
-      ✓ should revert when leaving vault with dust collateral and debt (103ms)
-      ✓ should revert if remove too much collateral vs debt bought back (94ms)
-      ✓ should partially close a short position and get back eth (132ms)
-      ✓ should fully close a short position and get back eth (140ms)
+      ✓ should revert if slippage is too high
+      ✓ should revert if end price is too high (46ms)
+      ✓ should revert when leaving vault with dust collateral and debt (93ms)
+      ✓ should revert if remove too much collateral vs debt bought back (90ms)
+      ✓ should partially close a short position and get back eth (95ms)
+      ✓ should fully close a short position and get back eth (110ms)
 
   Crab flashswap integration test: crab vault liquidation
     liquidate vault
-      ✓ should liquidate crab vault (207ms)
-      ✓ should let user deposit post liquidation and update vault state and provide correct wSqueeth and crab tokens (353ms)
-      ✓ depositor should withdraw correct amount of ETH collateral (195ms)
-      ✓ depositor2 should withdraw correct amount of ETH collateral (192ms)
+      ✓ should liquidate crab vault (145ms)
+      ✓ should let user deposit post liquidation and update vault state and provide correct wSqueeth and crab tokens (229ms)
+      ✓ depositor should withdraw correct amount of ETH collateral (137ms)
+      ✓ depositor2 should withdraw correct amount of ETH collateral (141ms)
 
   Crab flashswap integration test: uniswap price based hedging
     Sell auction
-      ✓ it should be eligible for a hedge after time has passed for twap to update but will revert due to hedge sign change (200ms)
-      ✓ should revert if not positive PnL (340ms)
-      ✓ it should revert if PnL is less than min wsqueeth (260ms)
-      ✓ it should allow a hedge based on price (281ms)
+      ✓ it should be eligible for a hedge after time has passed for twap to update but will revert due to hedge sign change (116ms)
+      ✓ should revert if not positive PnL (177ms)
+      ✓ it should revert if PnL is less than min wsqueeth (180ms)
+      ✓ it should allow a hedge based on price (319ms)
       ✓ should revert price hedging if the price threshold has not been reached
     Buy auction
-      ✓ should revert if not positive PnL (229ms)
-      ✓ it should revert if profit is less than min ETH (612ms)
-      ✓ it should allow a hedge based on price (357ms)
+      ✓ should revert if not positive PnL (179ms)
+      ✓ it should revert if profit is less than min ETH (536ms)
+      ✓ it should allow a hedge based on price (307ms)
 
   Crab flashswap integration test: uniswap time based hedging
     Sell auction
       ✓ should revert time hedging if the time threshold has not been reached
-      ✓ should revert hedging if strategy is delta neutral (101ms)
-      ✓ should revert hedging if target hedge sign change (auction change from selling to buying) (471ms)
-      ✓ should revert if not positive PnL (230ms)
-      ✓ hedge on uniswap based on time threshold (281ms)
+      ✓ should revert hedging if strategy is delta neutral (70ms)
+      ✓ should revert hedging if target hedge sign change (auction change from selling to buying) (353ms)
+      ✓ should revert if not positive PnL (171ms)
+      ✓ hedge on uniswap based on time threshold (195ms)
     Buy auction
       ✓ should revert time hedging if the time threshold has not been reached
-      ✓ should revert hedging if target hedge sign change (auction change from buying to selling) (108ms)
-      ✓ should revert if not positive PnL (234ms)
-      ✓ hedge based on time on uniswap (222ms)
+      ✓ should revert hedging if target hedge sign change (auction change from buying to selling) (79ms)
+      ✓ should revert if not positive PnL (162ms)
+      ✓ hedge based on time on uniswap (163ms)
 
   Crab flashswap integration test: price based hedging
     Sell auction
-      ✓ should revert price hedging if the time threshold has not been reached (45ms)
-      ✓ price hedging should not immediately be eligible for a hedge (435ms)
-      ✓ it should be eligible for a hedge after time has passed for twap to update but will revert due to hedge sign change (145ms)
-      ✓ it should revert if hedger specifies the wrong direction (127ms)
-      ✓ it should allow a hedge based on price (241ms)
+      ✓ should revert price hedging if the time threshold has not been reached (57ms)
+      ✓ price hedging should not immediately be eligible for a hedge (364ms)
+      ✓ it should be eligible for a hedge after time has passed for twap to update but will revert due to hedge sign change (106ms)
+      ✓ it should revert if hedger specifies the wrong direction (90ms)
+      ✓ it should allow a hedge based on price (185ms)
     Buy auction
-      ✓ should not immediately be eligible for a hedge (70ms)
-      ✓ it should be eligible for a hedge after time has passed for twap to update but will revert due to hedge sign change (122ms)
-      ✓ it should revert if hedger specifies the wrong direction (120ms)
-      ✓ it should revert if eth is attached to a buy auction (134ms)
-      ✓ it should revert if the limit price is breached (139ms)
-      ✓ it should allow a hedge based on price (349ms)
+      ✓ should not immediately be eligible for a hedge (48ms)
+      ✓ it should be eligible for a hedge after time has passed for twap to update but will revert due to hedge sign change (96ms)
+      ✓ it should revert if hedger specifies the wrong direction (96ms)
+      ✓ it should revert if eth is attached to a buy auction (106ms)
+      ✓ it should revert if the limit price is breached (104ms)
+      ✓ it should allow a hedge based on price (279ms)
 
   Crab flashswap integration test: time based hedging
     Sell auction
-      ✓ should revert time hedging if the time threshold has not been reached (62ms)
-      ✓ should revert hedging if strategy is delta neutral (152ms)
-      ✓ should revert hedging if target hedge sign change (auction change from selling to buying) (522ms)
-      ✓ should revert hedging if sent ETH to sell for WSqueeth is not enough (110ms)
-      ✓ should revert if hedger specifies wrong direction (129ms)
-      ✓ should revert if hedger specifies a limit price that is low (129ms)
-      ✓ should hedge by selling WSqueeth for ETH and update timestamp and price at hedge (243ms)
+      ✓ should revert time hedging if the time threshold has not been reached
+      ✓ should revert hedging if strategy is delta neutral (90ms)
+      ✓ should revert hedging if target hedge sign change (auction change from selling to buying) (388ms)
+      ✓ should revert hedging if sent ETH to sell for WSqueeth is not enough (93ms)
+      ✓ should revert if hedger specifies wrong direction (88ms)
+      ✓ should revert if hedger specifies a limit price that is low (89ms)
+      ✓ should hedge by selling WSqueeth for ETH and update timestamp and price at hedge (197ms)
     Buy auction
-      ✓ should revert when the limit price is too high (121ms)
-      ✓ should revert hedging when eth is attached to a buy hedge (137ms)
-      ✓ should revert hedging when WSqueeth seller have less amount that target hedge (133ms)
-      ✓ should hedge by buying WSqueeth for ETH  (299ms)
+      ✓ should revert when the limit price is too high (102ms)
+      ✓ should revert hedging when eth is attached to a buy hedge (102ms)
+      ✓ should revert hedging when WSqueeth seller have less amount that target hedge (105ms)
+      ✓ should hedge by buying WSqueeth for ETH  (261ms)
 
   Crab integration test: crab vault dust liquidation with excess collateral
     liquidate vault
-      ✓ should liquidate crab vault using a full dust (0 collateral >0 debt remain) (175ms)
-      ✓ should revert if user flash deposits post liquidation due to AS, because of amount specified of 0 (114ms)
-      ✓ should let user deposit post liquidation, with only ETH, and mint no squeeth for them (246ms)
-      ✓ depositor should revert trying to flashWithdraw with AS due to amount of wSqueeth to buy being 0 (50ms)
-      ✓ depositor should be able to withdraw and get some ETH, without any wSqueeth (184ms)
+      ✓ should liquidate crab vault using a full dust (0 collateral >0 debt remain) (171ms)
+      ✓ should revert if user flash deposits post liquidation due to AS, because of amount specified of 0 (90ms)
+      ✓ should let user deposit post liquidation, with only ETH, and mint no squeeth for them (197ms)
+      ✓ depositor should revert trying to flashWithdraw with AS due to amount of wSqueeth to buy being 0
+      ✓ depositor should be able to withdraw and get some ETH, without any wSqueeth (166ms)
 
   Crab integration test: crab vault full liquidation and shutdown of contracts
     liquidate vault
-      ✓ should liquidate crab vault using a full insolvent liquidation (0 collateral 0 debt remain) (184ms)
-      ✓ should NOT let user flash deposit post liquidation (125ms)
-      ✓ should NOT let user deposit post liquidation (134ms)
-      ✓ depositor should revert trying to flashWithdraw with AS due to amount of wSqueeth to buy being 0 (45ms)
-      ✓ depositor fwithdraw and get 0 (150ms)
+      ✓ should liquidate crab vault using a full insolvent liquidation (0 collateral 0 debt remain) (155ms)
+      ✓ should NOT let user flash deposit post liquidation (85ms)
+      ✓ should NOT let user deposit post liquidation (119ms)
+      ✓ depositor should revert trying to flashWithdraw with AS due to amount of wSqueeth to buy being 0
+      ✓ depositor fwithdraw and get 0 (122ms)
 
   Crab integration test: flash deposit - deposit - withdraw
     flash deposit - deposit - withdraw - flash withdraw
-      ✓ should revert flash depositing if not enough ETH (198ms)
-      ✓ should flash deposit correct amount and mint correct shares amount (316ms)
-      ✓ should deposit and mint correct LP and return the correct amount of wSqueeth debt per crab strategy token (185ms)
-      ✓ should withdraw correct amount of ETH (141ms)
-      ✓ should revert if slippage is too high (133ms)
-      ✓ should flash withdraw correct amount of ETH collateral (172ms)
+      ✓ should revert flash depositing if not enough ETH (169ms)
+      ✓ should flash deposit correct amount and mint correct shares amount (260ms)
+      ✓ should deposit and mint correct LP and return the correct amount of wSqueeth debt per crab strategy token (155ms)
+      ✓ should withdraw correct amount of ETH (100ms)
+      ✓ should revert if slippage is too high (101ms)
+      ✓ should flash withdraw correct amount of ETH collateral (143ms)
 
   Uniswap Position token integration test
     Save vault with uni position token
-      ✓ seller can redeem an Uni Position token for weth and wSqueeth to reduce debt in vault0 (153ms)
-      ✓ seller can redeem an Uni Position token for wSqueeth to reduce debt in vault1 (102ms)
-      ✓ seller can redeem an Uni Position token for eth to reduce debt in vault2 (91ms)
+      ✓ seller can redeem an Uni Position token for weth and wSqueeth to reduce debt in vault0 (101ms)
+      ✓ seller can redeem an Uni Position token for wSqueeth to reduce debt in vault1 (74ms)
+      ✓ seller can redeem an Uni Position token for eth to reduce debt in vault2 (75ms)
     deposit LP token with diff fee tier
-      ✓ deposit lp token into the vault (686ms)
+      ✓ deposit lp token into the vault (160ms)
 
   Casting Library tests
     Math checks for overflow
@@ -951,52 +951,52 @@ Compilation finished successfully
 
   Controller Funding tests
     Deployment
-      ✓ Deployment (50ms)
+      ✓ Deployment
     Funding actions
       Normalization Factor tests
         ✓ should apply the correct normalization factor for funding
-        ✓ normalization factor changes should be bounded above (58ms)
-        ✓ normalization factor changes should be bounded below (55ms)
-        ✓ calling apply funding with little time elapsed should not affect norm factor (69ms)
+        ✓ normalization factor changes should be bounded above (40ms)
+        ✓ normalization factor changes should be bounded below (39ms)
+        ✓ calling apply funding with little time elapsed should not affect norm factor (51ms)
       Funding collateralization tests
         mint
-          ✓ should revert if minting too much squeeth after funding (42ms)
-          ✓ should mint more wSqueeth after funding (43ms)
+          ✓ should revert if minting too much squeeth after funding
+          ✓ should mint more wSqueeth after funding
         withdraw
           ✓ should revert when trying to withdraw too much collateral
-          ✓ should be able to withdraw more collateral after funding (40ms)
+          ✓ should be able to withdraw more collateral after funding
       Extreme cases for normalization factor
-        ✓ should get capped normalization factor when mark = 0  (46ms)
-        ✓ should get capped normalization factor if eth price crashes (43ms)
-        ✓ calling applying funding every 12 hours * 2 times, will result in a lower norm factor compared to every 24 hours * 1 times (158ms)
+        ✓ should get capped normalization factor when mark = 0 
+        ✓ should get capped normalization factor if eth price crashes
+        ✓ calling applying funding every 12 hours * 2 times, will result in a lower norm factor compared to every 24 hours * 1 times (114ms)
 
   Controller: Uni LP tokens collateralization
     Vault1 and Vault2: Basic Flow
       ✓ should revert when trying to deposit a LP token to vault 0
       ✓ should revert when trying to deposit a LP token to non-existent vault
-      ✓ should revert when trying to deposit a LP token from a different pool (46ms)
-      ✓ should revert when trying to deposit a LP token with id 0 (57ms)
+      ✓ should revert when trying to deposit a LP token from a different pool
+      ✓ should revert when trying to deposit a LP token with id 0
       ✓ should revert when depositor do not own the NFT
-      ✓ should deposit and NFT to an existing vault. (67ms)
-      ✓ should revert if a user tries to deposit a second nft. (76ms)
-      ✓ should revert if vault id is 0 (39ms)
+      ✓ should deposit and NFT to an existing vault. (43ms)
+      ✓ should revert if a user tries to deposit a second nft.
+      ✓ should revert if vault id is 0
       ✓ should revert if vault id is too high
       ✓ should revert if non owner withdraws the nft
       ✓ should withdraw the nft successfully
       ✓ should revert when trying to withdraw from a empty vault
-      ✓ should deposit an NFT to an existing vault using _openDepositMint (61ms)
+      ✓ should deposit an NFT to an existing vault using _openDepositMint (41ms)
     Vault3: Basic Collateralization checks
       Case: price is at the same
-        ✓ should be able to mint more squeeth after lp deposit (59ms)
+        ✓ should be able to mint more squeeth after lp deposit (52ms)
         ✓ should be able to remove all collateral after lp token deposit, because the lp token is worth 2x the debt amount.
         ✓ should revert if trying to remove LP token from the vault.
         ✓ update nft property to stimulate losses in Uni LP
         ✓ should revert when effective collateral after withdraw < dust limit
       Case: price increase, vault should go underwater
         ✓ should become underwater if squeeth price increase, and LP token has no enough eth to cover short position.
-        ✓ should be able to liquidate the NFT (89ms)
+        ✓ should be able to liquidate the NFT (72ms)
       Case: price decrease, vault should above water
-        ✓ should be able to collateralize the vault (45ms)
+        ✓ should be able to collateralize the vault
         ✓ should revert when trying to liquidate the NFT
     Vault4: Saving vault by burning NFT
       Case: price is at the same
@@ -1004,14 +1004,14 @@ Compilation finished successfully
         ✓ should revert when calling from random address
       Case: price increase, vault should go underwater and people can save it
         ✓ should become underwater if squeeth price increase, and LP token has no enough eth
-        ✓ should be able to reduce the debt by calling liquidate (62ms)
+        ✓ should be able to reduce the debt by calling liquidate (46ms)
       Case: the nft worth more wsqueeth than minted
-        ✓ anyone can safe the vault, the owner will receive extra wsqueeth withdrawn from Uniswap (94ms)
+        ✓ anyone can safe the vault, the owner will receive extra wsqueeth withdrawn from Uniswap (75ms)
         ✓ calling reduceDebt will not take effect if the vault has not nft
     Vault5: test combined actions
-      ✓ should just deposit lp token and mint if deposit amount is 0 (64ms)
-      ✓ should just deposit lp token and deposit eth if mint amount is 0 (73ms)
-      ✓ should do nothing but deposit uni nft if both deposit and mint amount are 0 (69ms)
+      ✓ should just deposit lp token and mint if deposit amount is 0 (52ms)
+      ✓ should just deposit lp token and deposit eth if mint amount is 0 (55ms)
+      ✓ should do nothing but deposit uni nft if both deposit and mint amount are 0 (59ms)
 
   Controller
     Time bound pausing
@@ -1030,7 +1030,7 @@ Compilation finished successfully
 
   Simple Vault state tests
     Deployment
-      ✓ Deployment (49ms)
+      ✓ Deployment
     isVaultSafe tests on vaults with no nft
       ✓ should return true if vault does not exist
       ✓ should return true if vault has no short
@@ -1038,8 +1038,8 @@ Compilation finished successfully
       ✓ moving the price up should make the vault insolvent
       ✓ funding should make the vault back to safe as time goes by
     isVaultSafe tests on vaults with nft
-      ✓ should become underwater if squeeth price increase, and LP is all eth (43ms)
-      ✓ should become underwater if squeeth price decrease, and LP is all squeeth (42ms)
+      ✓ should become underwater if squeeth price increase, and LP is all eth
+      ✓ should become underwater if squeeth price decrease, and LP is all squeeth
 
   Controller
     ✓ Should revert when oracle is address(0)
@@ -1079,7 +1079,7 @@ Compilation finished successfully
       #Mint: Mint Squeeth
         ✓ Should revert if not called by owner
         ✓ Should revert when trying to mint to non-existent vault
-        ✓ Should be able to mint squeeth (44ms)
+        ✓ Should be able to mint squeeth
         ✓ Should revert when minting more than allowed
       #Burn: Burn Squeeth
         ✓ Should revert when trying to burn for vault 0
@@ -1091,39 +1091,39 @@ Compilation finished successfully
         ✓ should revert if vault after burning is underwater
         ✓ should revert if vault after burning is dust
         ✓ Should revert if trying to withdraw and put make vault underwater
-        ✓ anyone can burn squeeth for vault1 (42ms)
+        ✓ anyone can burn squeeth for vault1
         ✓ should revert when non-owner try to burn and withdraw from vault
         ✓ Should be able to burn squeeth
       #Withdraw: Remove Collateral
         ✓ Should revert when trying to remove from vault 0
         ✓ Should revert if caller is not the owner
         ✓ Should revert if trying to remove more collateral than deposited
-        ✓ should revert if trying to remove collateral which produce a vault dust (71ms)
-        ✓ Should be able to remove collateral (38ms)
+        ✓ should revert if trying to remove collateral which produce a vault dust (56ms)
+        ✓ Should be able to remove collateral
         ✓ Should close the vault when it's empty
     Combined actions
       Open, deposit and mint
         ✓ should revert if the vault has too little collateral
-        ✓ should open vault, deposit and mint in the same tx (42ms)
+        ✓ should open vault, deposit and mint in the same tx
       Deposit and mint with mintWPowerPerpAmount
-        ✓ should deposit and mint in the same tx (40ms)
+        ✓ should deposit and mint in the same tx
         ✓ should just mint if deposit amount is 0
         ✓ should just deposit if mint amount is 0
         ✓ should do nothing if both deposit and mint amount are 0
       Deposit and mint By operator
         ✓ should not allow a non owner to update an operator
         ✓ should add an operator
-        ✓ should deposit and mint in the same tx (40ms)
+        ✓ should deposit and mint in the same tx
         ✓ should not allow an operator to update the operator associated with an account
       Burn and withdraw
-        ✓ should burn and withdraw with burnRPowerPerp (41ms)
+        ✓ should burn and withdraw with burnRPowerPerp
     Deposit and withdraw with Fee
       ✓ should be able to set fee rate
       ✓ should revert if vault is unable to pay fee amount from attach amount or vault collateral
-      ✓ should charge fee on mintPowerPerpAmount from deposit amount (39ms)
-      ✓ should charge fee on mintPowerPerpAmount from vault collateral (39ms)
-      ✓ should charge fee on mintWPowerPerpAmount from deposit amount (49ms)
-      ✓ should charge fee on mintWPowerPerpAmount from vault collateral (46ms)
+      ✓ should charge fee on mintPowerPerpAmount from deposit amount
+      ✓ should charge fee on mintPowerPerpAmount from vault collateral
+      ✓ should charge fee on mintWPowerPerpAmount from deposit amount
+      ✓ should charge fee on mintWPowerPerpAmount from vault collateral
     Settlement operations should be banned
       ✓ Should revert when calling redeemLong
       ✓ Should revert when calling redeemShort
@@ -1158,39 +1158,39 @@ Compilation finished successfully
         ✓ Should revert when a owner tries to pause the system after it has been paused 4 times before
       Shut down the system using shutdown when it is unpaused
         ✓ Should revert when called by non-owner
-        ✓ Should shutdown the system at a price that it will go insolvent (65ms)
+        ✓ Should shutdown the system at a price that it will go insolvent (46ms)
         ✓ Should revert when calling shutdown after system is shutdown
         ✓ Should revert when calling pause after system is shutdown
-        ✓ Should revert when calling unPause after system is shutdown (67ms)
+        ✓ Should revert when calling unPause after system is shutdown
       Settlement: redeemLong
-        ✓ should go insolvent while trying to redeem fair value for seller1 (big holder) (59ms)
-        ✓ should accept donation from random address (108ms)
-        ✓ should be able to redeem long value for seller2 (250ms)
-        ✓ should be able to redeem long value for seller3 (122ms)
+        ✓ should go insolvent while trying to redeem fair value for seller1 (big holder)
+        ✓ should accept donation from random address
+        ✓ should be able to redeem long value for seller2
+        ✓ should be able to redeem long value for seller3
       Settlement: redeemShort
         ✓ should revert when a underwater vault (seller2) is trying to redeem
         ✓ should revert when a underwater vault with nft (seller8) is trying to redeem
-        ✓ should allow anyone to reduceDebt in the insolvent vault (55ms)
+        ✓ should allow anyone to reduceDebt in the insolvent vault
         ✓ should still revert when a underwater vault with nft (seller8) is trying to redeem
         ✓ should revert when a random user is trying to redeem
         ✓ should redeem fair value for normal vault (seller 3)
-        ✓ should redeem fair value for short side with uni v3 nft (seller 5) (72ms)
+        ✓ should redeem fair value for short side with uni v3 nft (seller 5) (38ms)
         ✓ set seller6 LP token properties
-        ✓ should redeem fair value for seller 6 with one-sided nft (44ms)
+        ✓ should redeem fair value for seller 6 with one-sided nft
         ✓ should redeem fair value for short vault with no debt (seller7)
 
   Controller: liquidation unit test
     Deployment
-      ✓ Deployment (69ms)
+      ✓ Deployment (41ms)
     Liquidation
-      ✓ Should revert liquidating a safe vault (53ms)
+      ✓ Should revert liquidating a safe vault
       ✓ set eth price to make the vault underwater
-      ✓ should revert if the vault become a dust vault after liquidation (61ms)
-      ✓ should allow liquidating a whole vault if only liquidating half of it is gonna make it a dust vault (407ms)
-      ✓ Liquidate unsafe vault (vault 1) (278ms)
+      ✓ should revert if the vault become a dust vault after liquidation (43ms)
+      ✓ should allow liquidating a whole vault if only liquidating half of it is gonna make it a dust vault (48ms)
+      ✓ Liquidate unsafe vault (vault 1) (49ms)
     Liquidation: un-profitable scenario
-      ✓ should revert if the vault is paying out all collateral, but there are still debt (55ms)
-      ✓ can fully liquidate a underwater vault, even it's not profitable (66ms)
+      ✓ should revert if the vault is paying out all collateral, but there are still debt (39ms)
+      ✓ can fully liquidate a underwater vault, even it's not profitable (48ms)
 
   Oracle
     ETH/USD pool
@@ -1202,11 +1202,11 @@ Compilation finished successfully
 
   Oracle
     Fetch price right after initialization
-      ✓ should return initial price with period = 1 (46ms)
-      ✓ should be able to get TWAP since init time (87ms)
-      ✓ should be able to get TWAP since init time after time goes by (140ms)
-      ✓ should revert if trying to request twap since a time before initialization (151ms)
-      ✓ should NOT revert if trying to request twap since a time before initialization, with #getTwapSafe (82ms)
+      ✓ should return initial price with period = 1
+      ✓ should be able to get TWAP since init time
+      ✓ should be able to get TWAP since init time after time goes by
+      ✓ should revert if trying to request twap since a time before initialization
+      ✓ should NOT revert if trying to request twap since a time before initialization, with #getTwapSafe
       ✓ should return max period
     Fetch price after touching the pool
       ✓ should revert if requesting TWAP from init timestamp
@@ -1233,12 +1233,12 @@ Compilation finished successfully
       ✓ should be able to get a historical TWAP from second interaction to first interaction
       ✓ should be able to get TWAP since second touch with #getTwapSafe
     oracle tick is time weighted
-      1) tick should return the average when each price has same weight 
-      2) tick should return the weighed average when price does not have same weight
+      ✓ tick should return the average when each price has same weight  (7607ms)
+      ✓ tick should return the weighed average when price does not have same weight (7642ms)
 
   ShortPowerPerp
     Deployment
-      ✓ Deployment (71ms)
+      ✓ Deployment
     Initialization
       ✓ should revert when calling init with invalid address
       ✓ Should be able to init contract
@@ -1260,7 +1260,7 @@ Compilation finished successfully
 
   Crab Strategy
     Deployment
-      ✓ Should revert if weth is address 0 (39ms)
+      ✓ Should revert if weth is address 0
       ✓ Should revert if controller is address 0
       ✓ Should revert if oracle is address 0
       ✓ Should revert if uniswap factory is address 0
@@ -1271,20 +1271,20 @@ Compilation finished successfully
       ✓ Should revert if min auction slippage > 1e18 
       ✓ Should revert if min price multiplier is 0
       ✓ Should revert if max price multplier < 1e18
-      ✓ Deployment (61ms)
+      ✓ Deployment (49ms)
     Crab strategy vault
       ✓ Check crab details
       ✓ Check crab strategy opened vault
     receive checks
       ✓ should revert when sending eth to crab strategy contract from an EOA
     Deposit into strategy
-      ✓ Should deposit and mint correct LP when initial debt = 0 (42ms)
-      ✓ Should deposit and mint correct LP when initial debt != 0 and return the correct amount of wSqueeth debt per crab strategy token (52ms)
+      ✓ Should deposit and mint correct LP when initial debt = 0
+      ✓ Should deposit and mint correct LP when initial debt != 0 and return the correct amount of wSqueeth debt per crab strategy token
     Withdraw from strategy
       ✓ should revert withdrawing with unequal share/wSqueeth ratio
       ✓ should revert withdrawing from a random account
-      ✓ should withdraw 0 correctly (51ms)
-      ✓ should withdraw correct amount (43ms)
+      ✓ should withdraw 0 correctly
+      ✓ should withdraw correct amount
 
   VaultLib
     #getUniPositionBalances tests
@@ -1302,29 +1302,10 @@ Compilation finished successfully
           ✓ should return expected amount of squeeth and eth
 
 
-  375 passing (7m)
-  2 failing
+  377 passing (3m)
 
-  1) Oracle
-       oracle tick is time weighted
-         tick should return the average when each price has same weight :
-     Error: Timeout of 20000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (/Users/andreisimion/playground/cryptocurrency/akiratech/review-opyn-squeeth-2021-11/code/packages/hardhat/test/unit-tests/oracle.ts)
-      at runMicrotasks (<anonymous>)
-      at processTicksAndRejections (node:internal/process/task_queues:96:5)
-      at runNextTicks (node:internal/process/task_queues:65:3)
-      at listOnTimeout (node:internal/timers:526:9)
-      at processTimers (node:internal/timers:500:7)
-
-  2) Oracle
-       oracle tick is time weighted
-         tick should return the weighed average when price does not have same weight:
-     Error: Timeout of 20000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (/Users/andreisimion/playground/cryptocurrency/akiratech/review-opyn-squeeth-2021-11/code/packages/hardhat/test/unit-tests/oracle.ts)
-      at runMicrotasks (<anonymous>)
-      at processTicksAndRejections (node:internal/process/task_queues:96:5)
-      at runNextTicks (node:internal/process/task_queues:65:3)
-      at listOnTimeout (node:internal/timers:526:9)
-      at processTimers (node:internal/timers:500:7)
-
+Done in 213.77s.
+Done in 213.94s.
 ```
 
 ## License
